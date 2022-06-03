@@ -4,13 +4,14 @@ class Util{
 	static entradaDato(mensaje,tipo=0){
 		let entrada;
 		let salida;
+		let aviso=null;
 		do{
 			salida=false;
-			entrada=prompt(mensaje)??"";
+			entrada=prompt(`${aviso??""}\n\n${mensaje}`)??"";
 			switch(tipo){
-				case 1: salida=Util.esNumero(entrada); break;
-				case 2: salida=(Util.esNumero(entrada) && !Util.esDecimal(entrada)); break;
-				case 3: salida=Util.esDecimal(); break;
+				case 1: salida=Util.esNumero(entrada); aviso="Solo se aceptan números"; break;
+				case 2: salida=(Util.esNumero(entrada) && !Util.esDecimal(entrada)); aviso="Solo se aceptan números enteros"; break;
+				case 3: salida=Util.esDecimal(entrada); aviso="Solo se aceptan números décimales"; break;
 				case 0: salida=true; break;
 			}
 		}while(!salida);
