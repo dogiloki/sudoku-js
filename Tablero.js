@@ -34,26 +34,37 @@ class Tablero{
 		console.log(tabla);
 	}
 
-	ponerNumero(fila,columna,numero){
-		if(numero<0 && numero>this.tam_tablero){
-			return -1;
+	ponerNumero(fila,columna,numero=""){
+		if(numero==""){
+			this.tablero[fila][columna]=Diccionario.casilla_vacia;
+			return true;
 		}
-		let inicio=this.inicioSubtablero(fila,columna);
-		console.log(inicio);
+		if(!(Util.esNumero(numero) && !Util.esDecimal(numero))){
+			return false;
+		}
+		if(numero<=0 || numero>this.tam_tablero){
+			return false;
+		}
+		if(this.tablero[fila][columna]==numero){
+			return false;
+		}
+		// Verifica en forma de cruz
 		for(let a=0; a<this.tam_tablero; a++){
 			if(this.tablero[a][columna]==numero || this.tablero[fila][a]==numero){
-				return -1;
+				return false;
 			}
 		}
+		// Verifica dentro del subtablero
+		let inicio=this.inicioSubtablero(fila,columna);
 		for(let a=inicio.fila; a<inicio.fila+this.tam_subtablero; a++){
 			for(let b=inicio.columna; b<inicio.columna+this.tam_subtablero; b++){
 				if(this.tablero[a][b]==numero){
-					return -1;
+					return false;
 				}
 			}
 		}
 		this.tablero[fila][columna]=numero;
-		this.mostrar();
+		return true;
 	}
 
 	inicioSubtablero(fila,columna){
