@@ -27,7 +27,16 @@ class Tablero{
 		let tabla="";
 		for(let a=0; a<this.tam_tablero; a++){
 			for(let b=0; b<this.tam_tablero; b++){
-				tabla+=this.tablero[a][b]+" | ";
+				tabla+=" "+this.tablero[a][b]+" ";
+				if((b+1)%this.tam_subtablero==0){
+					tabla+=" | ";
+				}
+			}
+			tabla+="\n";
+			if((a+1)%this.tam_subtablero==0){
+				for(let b=0; b<this.tam_tablero+this.tam_subtablero; b++){
+					tabla+=" - ";
+				}
 			}
 			tabla+="\n";
 		}

@@ -5,6 +5,6 @@ class Diccionario{
 		tablero:3
 	}
 
-	static casilla_vacia=" ";
+	static casilla_vacia="0";
 
 }

@@ -7,7 +7,7 @@ class Main{
 	pedirNumero(){
 		let mensaje="Tamaño del tablero: "+Diccionario.tamanio.tablero;
 		mensaje+="\n"+this.tablero.mostrar();
-		mensaje+="Ingrese una posición la altura, anchura, número. Separa por comas";
+		mensaje+="Ingrese una posición la fila, columna, número. Separados por comas";
 		let posicion=Util.entradaDato(mensaje,0).replaceAll(" ","").split(",");
 		let fila=(posicion[0]??"")-1;
 		let columna=(posicion[1]??"")-1;
