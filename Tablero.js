@@ -32,6 +32,7 @@ class Tablero{
 			tabla+="\n";
 		}
 		console.log(tabla);
+		return tabla;
 	}
 
 	ponerNumero(fila,columna,numero=""){

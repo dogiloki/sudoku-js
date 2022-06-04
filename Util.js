@@ -7,7 +7,7 @@ class Util{
 		let aviso=null;
 		do{
 			salida=false;
-			entrada=prompt(`${aviso??""}\n\n${mensaje}`)??"";
+			entrada=prompt(`${mensaje}\n\n${aviso??""}`)??"";
 			switch(tipo){
 				case 1: salida=Util.esNumero(entrada); aviso="Solo se aceptan números"; break;
 				case 2: salida=(Util.esNumero(entrada) && !Util.esDecimal(entrada)); aviso="Solo se aceptan números enteros"; break;
