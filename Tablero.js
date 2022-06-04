@@ -7,6 +7,8 @@ class Tablero{
 		this.dimencionar();
 	}
 
+	static numeros=0;
+
 	dimencionar(){
 		this.tam_subtablero=Diccionario.tamanio.sub_tablero;
 		this.tam_tablero=this.tam_subtablero*Diccionario.tamanio.tablero;
@@ -43,8 +45,16 @@ class Tablero{
 		return tabla;
 	}
 
+	posicionValida(fila,columna){
+		return (fila<this.tam_tablero && columna<this.tam_tablero && fila>=0 && columna>=0);
+	}
+
 	ponerNumero(fila,columna,numero=""){
+		if(!this.posicionValida(fila,columna)){
+			return false;
+		}
 		if(numero==""){
+			Tablero.numeros-=(Tablero.numeros==0 || this.tablero[fila][columna]==Diccionario.casilla_vacia)?0:1;
 			this.tablero[fila][columna]=Diccionario.casilla_vacia;
 			return true;
 		}
@@ -73,6 +83,7 @@ class Tablero{
 			}
 		}
 		this.tablero[fila][columna]=numero;
+		Tablero.numeros++;
 		return true;
 	}
 
