@@ -47,7 +47,7 @@ class Sudoku{
 			for(let a=fila; a<fila+this.tam_subtablero; a++){
 				for(let b=columna; b<columna+this.tam_subtablero; b++){
 					for(let c=0; c<numeros.length; c++){
-						if(!this.numeroRepetido(a,b,numeros[c],this.resultado)){
+						if(this.numeroRepetido(a,b,numeros[c],this.resultado)==null){
 							this.resultado[a][b].texto=numeros[c];
 							c=numeros.length;
 						}
@@ -108,7 +108,7 @@ class Sudoku{
 		if(numero<=0 || numero>this.tam_tablero || this.tablero[fila][columna].texto==numero || this.tablero[fila][columna].pista){
 			return false;
 		}
-		if(this.numeroRepetido(fila,columna,numero)){
+		if(this.numeroRepetido(fila,columna,numero)!=null){
 			return false;
 		}
 		this.tablero[fila][columna].texto=numero;
@@ -121,25 +121,26 @@ class Sudoku{
 	}
 
 	numeroRepetido(fila,columna,numero="",tablero=this.tablero){
-		if(!this.posicionValida(fila,columna)){
-			return true;
-		}
+		let repetidos=[];
 		// Verifica dentro del subtablero
 		let inicio=this.inicioSubtablero(fila,columna);
 		for(let a=inicio.fila; a<inicio.fila+this.tam_subtablero; a++){
 			for(let b=inicio.columna; b<inicio.columna+this.tam_subtablero; b++){
 				if(tablero[a][b].texto==numero){
-					return true;
+					repetidos.push({fila: a, columna: b});
 				}
 			}
 		}
 		// Verifica en forma de cruz
 		for(let a=0; a<this.tam_tablero; a++){
-			if(tablero[a][columna].texto==numero || tablero[fila][a].texto==numero){
-				return true;
+			if(tablero[a][columna].texto==numero){
+				repetidos.push({"fila": a, "columna": columna});
+			}
+			if(tablero[fila][a].texto==numero){
+				repetidos.push({"fila": fila, "columna": a});
 			}
 		}
-		return false;
+		return null;
 	}
 
 	inicioSubtablero(fila,columna){

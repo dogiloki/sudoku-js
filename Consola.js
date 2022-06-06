@@ -16,7 +16,7 @@ class Consola{
 		if(!this.sudoku.ponerNumero(fila,columna,numero)){
 			alert("La posición o número no es válido");
 		}
-		if(Sudoku.numeros<this.sudoku.tam_tablero){
+		if(this.sudoku.tam_tablero<Sudoku.numeros){
 			this.pedirNumero();
 		}else{
 			alert("Juego terminado!!!");
