@@ -3,6 +3,7 @@ class Consola{
 	constructor(){
 		this.sudoku=new Sudoku();
 		this.tablero=this.sudoku.tablero_resolver;
+		console.log(this.sudoku.resultado);
 	}
 
 	pedirNumero(){

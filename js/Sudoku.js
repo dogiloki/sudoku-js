@@ -140,7 +140,7 @@ class Sudoku{
 				repetidos.push({"fila": fila, "columna": a});
 			}
 		}
-		return null;
+		return repetidos.length<=0?null:repetidos;
 	}
 
 	inicioSubtablero(fila,columna){
