@@ -149,9 +149,9 @@ class Sudoku{
 		};
 	}
 
-	coordenadas(num){
-		let fila=Math.ceil(num/this.tam_tablero);
-		let columna=Math.ceil(num%this.tam_tablero);
+	coordenadas(posicion){
+		let fila=Math.ceil(posicion/this.tam_tablero);
+		let columna=Math.ceil(posicion%this.tam_tablero);
 		columna=columna==0?this.tam_tablero:columna;
 		return {
 			fila: fila-1,
