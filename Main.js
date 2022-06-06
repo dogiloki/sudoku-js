@@ -1,7 +1,8 @@
 class Main{
 
 	constructor(){
-		this.tablero=new Tablero();
+		this.sudoku=new Sudoku();
+		this.tablero=sudoku.tablero;
 	}
 
 	pedirNumero(){
