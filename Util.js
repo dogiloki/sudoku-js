@@ -52,6 +52,9 @@ class Util{
 	}
 
 	static numeroAleatorio(max,min=0,cantidad=1){
+		if((max-min)<cantidad){
+			return null;
+		}
 		let numeros=[];
 		do{
 			let repetido=false;
