@@ -17,6 +17,7 @@ class Main{
 			alert("La posición o número no es válido");
 		}
 		this.pedirNumero();
+		console.log(Sudoku.numeros);
 	}
 
 }
