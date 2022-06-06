@@ -64,6 +64,7 @@ class Sudoku{
 		// Llenar tablero a resolver con pistas
 		for(let posicion of posiciones){
 			let coords=this.coordenadas(posicion);
+			this.resultado[coords.fila][coords.columna].pista=true;
 			this.tablero[coords.fila][coords.columna]={
 				texto: this.resultado[coords.fila][coords.columna].texto,
 				pista: true
