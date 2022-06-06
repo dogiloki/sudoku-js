@@ -93,7 +93,11 @@ class Sudoku{
 	}
 
 	ponerNumero(fila,columna,numero=""){
-		console.log(this.tablero);
+		if(numero=="" && !this.tablero[fila][columna].pista){
+			Sudoku.numeros-=(Sudoku.numeros==0 || this.tablero[fila][columna].texto==Diccionario.casilla_vacia)?0:1;
+			this.tablero[fila][columna].texto=Diccionario.casilla_vacia;
+			return true;
+		}
 		if(!this.posicionValida(fila,columna)){
 			return false;
 		}
@@ -102,11 +106,6 @@ class Sudoku{
 		}
 		if(numero<=0 || numero>this.tam_tablero || this.tablero[fila][columna].texto==numero || this.tablero[fila][columna].pista){
 			return false;
-		}
-		if(numero==""){
-			Sudoku.numeros-=(Sudoku.numeros==0 || this.tablero[fila][columna].texto==Diccionario.casilla_vacia)?0:1;
-			this.tablero[fila][columna].texto=Diccionario.casilla_vacia;
-			return true;
 		}
 		if(this.numeroRepetido(fila,columna,numero)){
 			return false;

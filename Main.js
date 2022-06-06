@@ -13,10 +13,9 @@ class Main{
 		let fila=(posicion[0]??0)-1;
 		let columna=(posicion[1]??0)-1;
 		let numero=(posicion[2]??0);
-		/*if(!this.sudoku.ponerNumero(fila,columna,numero)){
+		if(!this.sudoku.ponerNumero(fila,columna,numero)){
 			alert("La posición o número no es válido");
-		}*/
-		alert(this.sudoku.ponerNumero(fila,columna,numero));
+		}
 		this.pedirNumero();
 	}
 
