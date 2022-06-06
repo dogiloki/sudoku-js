@@ -2,7 +2,7 @@ class Sudoku{
 
 	constructor(){
 		this.tablero;
-		this.tablero_resolver;
+		this.resultado;
 		this.tam_subtablero;
 		this.tam_tablero;
 		this.dimencionar();
@@ -18,13 +18,19 @@ class Sudoku{
 
 	vaciar(){
 		this.tablero=[];
-		this.tablero_resolver=[];
+		this.resultado=[];
 		for(let a=0; a<this.tam_tablero; a++){
 			this.tablero[a]=[];
-			this.tablero_resolver[a]=[];
+			this.resultado[a]=[];
 			for(let b=0; b<this.tam_tablero; b++){
-				this.tablero[a][b]=Diccionario.casilla_vacia;
-				this.tablero_resolver[a][b]=Diccionario.casilla_vacia;
+				this.tablero[a][b]={
+					texto: Diccionario.casilla_vacia,
+					pista: false
+				}
+				this.resultado[a][b]={
+					texto: Diccionario.casilla_vacia,
+					pista: false
+				}
 			}
 		}
 		this.generar();
@@ -41,7 +47,8 @@ class Sudoku{
 			for(let a=fila; a<fila+this.tam_subtablero; a++){
 				for(let b=columna; b<columna+this.tam_subtablero; b++){
 					for(let c=0; c<numeros.length; c++){
-						if(this.ponerNumero(a,b,numeros[c])){
+						if(!this.numeroRepetido(a,b,numeros[c],this.resultado)){
+							this.resultado[a][b].texto=numeros[c];
 							c=numeros.length;
 						}
 					}
@@ -57,7 +64,10 @@ class Sudoku{
 		// Llenar tablero a resolver con pistas
 		for(let posicion of posiciones){
 			let coords=this.coordenadas(posicion);
-			this.tablero_resolver[coords.fila][coords.columna]=this.tablero[coords.fila][coords.columna];
+			this.tablero[coords.fila][coords.columna]={
+				texto: this.resultado[coords.fila][coords.columna].texto,
+				pista: true
+			}
 		}
 	}
 
@@ -65,7 +75,11 @@ class Sudoku{
 		let tabla="";
 		for(let a=0; a<this.tam_tablero; a++){
 			for(let b=0; b<this.tam_tablero; b++){
-				tabla+=" "+this.tablero[a][b]+" ";
+				if(this.tablero[a][b].pista){
+					tabla+=" "+this.tablero[a][b].texto+" ";
+				}else{
+					tabla+=" "+Diccionario.casilla_vacia+" ";
+				}
 				if((b+1)%this.tam_subtablero==0){
 					tabla+=" | ";
 				}
@@ -85,24 +99,21 @@ class Sudoku{
 		if(!this.posicionValida(fila,columna)){
 			return false;
 		}
-		if(numero==""){
-			Sudoku.numeros-=(Sudoku.numeros==0 || this.tablero[fila][columna]==Diccionario.casilla_vacia)?0:1;
-			this.tablero[fila][columna]=Diccionario.casilla_vacia;
-			return true;
-		}
 		if(!(Util.esNumero(numero) && !Util.esDecimal(numero))){
 			return false;
 		}
-		if(numero<=0 || numero>this.tam_tablero){
+		if(numero<=0 || numero>this.tam_tablero || this.tablero[fila][columna].texto==numero || this.tablero[fila][columna].pista){
 			return false;
 		}
-		if(this.tablero[fila][columna]==numero){
-			return false;
+		if(numero==""){
+			Sudoku.numeros-=(Sudoku.numeros==0 || this.tablero[fila][columna].texto==Diccionario.casilla_vacia)?0:1;
+			this.tablero[fila][columna].texto=Diccionario.casilla_vacia;
+			return true;
 		}
 		if(this.numeroRepetido(fila,columna,numero)){
 			return false;
 		}
-		this.tablero[fila][columna]=numero;
+		this.tablero[fila][columna].texto=numero;
 		Sudoku.numeros++;
 		return true;
 	}
@@ -111,7 +122,7 @@ class Sudoku{
 		return (fila<this.tam_tablero && columna<this.tam_tablero && fila>=0 && columna>=0);
 	}
 
-	numeroRepetido(fila,columna,numero=""){
+	numeroRepetido(fila,columna,numero="",tablero=this.tablero){
 		if(!this.posicionValida(fila,columna)){
 			return true;
 		}
@@ -119,14 +130,14 @@ class Sudoku{
 		let inicio=this.inicioSubtablero(fila,columna);
 		for(let a=inicio.fila; a<inicio.fila+this.tam_subtablero; a++){
 			for(let b=inicio.columna; b<inicio.columna+this.tam_subtablero; b++){
-				if(this.tablero[a][b]==numero){
+				if(tablero[a][b].texto==numero){
 					return true;
 				}
 			}
 		}
 		// Verifica en forma de cruz
 		for(let a=0; a<this.tam_tablero; a++){
-			if(this.tablero[a][columna]==numero || this.tablero[fila][a]==numero){
+			if(tablero[a][columna].texto==numero || tablero[fila][a].texto==numero){
 				return true;
 			}
 		}
