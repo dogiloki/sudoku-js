@@ -68,6 +68,7 @@ class Sudoku{
 				texto: this.resultado[coords.fila][coords.columna].texto,
 				pista: true
 			}
+			Sudoku.numeros++;
 		}
 	}
 
@@ -75,11 +76,7 @@ class Sudoku{
 		let tabla="";
 		for(let a=0; a<this.tam_tablero; a++){
 			for(let b=0; b<this.tam_tablero; b++){
-				if(this.tablero[a][b].pista){
-					tabla+=" "+this.tablero[a][b].texto+" ";
-				}else{
-					tabla+=" "+Diccionario.casilla_vacia+" ";
-				}
+				tabla+=" "+this.tablero[a][b].texto+" ";
 				if((b+1)%this.tam_subtablero==0){
 					tabla+=" | ";
 				}
@@ -96,6 +93,7 @@ class Sudoku{
 	}
 
 	ponerNumero(fila,columna,numero=""){
+		console.log(this.tablero);
 		if(!this.posicionValida(fila,columna)){
 			return false;
 		}

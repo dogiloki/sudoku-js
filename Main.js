@@ -7,16 +7,16 @@ class Main{
 
 	pedirNumero(){
 		let mensaje="Tamaño del tablero: "+Diccionario.num.tablero;
-		mensaje+="\n"+this.sudoku.mostrar();
+		mensaje+="\n"+this.sudoku.mostrar(0);
 		mensaje+="Ingrese una posición la fila, columna, número. Separados por comas";
 		let posicion=Util.entradaDato(mensaje,0).replaceAll(" ","").split(",");
 		let fila=(posicion[0]??0)-1;
 		let columna=(posicion[1]??0)-1;
 		let numero=(posicion[2]??0);
-		if(!this.sudoku.ponerNumero(fila,columna,numero)){
+		/*if(!this.sudoku.ponerNumero(fila,columna,numero)){
 			alert("La posición o número no es válido");
-		}
-		console.log(Sudoku.numeros);
+		}*/
+		alert(this.sudoku.ponerNumero(fila,columna,numero));
 		this.pedirNumero();
 	}
 
