@@ -2,7 +2,7 @@ class Main{
 
 	constructor(){
 		this.sudoku=new Sudoku();
-		this.tablero=sudoku.tablero;
+		this.tablero=this.sudoku.tablero;
 	}
 
 	pedirNumero(){
