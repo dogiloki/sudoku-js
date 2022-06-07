@@ -6,6 +6,6 @@ class Diccionario{
 		pistas:17
 	}
 
-	static casilla_vacia="0";
+	static casilla_vacia="";
 
 }

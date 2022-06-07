@@ -1,0 +1,36 @@
+*{
+	padding: 0px;
+	margin: 0px;
+	box-sizing: border-box;
+	font-family: arial;
+}
+h1{
+	padding: 20px;
+}
+.content_tablero{
+	margin: 20px;
+}
+.content_tablero .fila{
+	display: flex;
+}
+.content_tablero .columna{
+	display: block;
+}
+.content_tablero .casilla{
+	width: 60px;
+	height: 60px;
+	font-size: 20px;
+	padding: 20px;
+	text-align: center;
+	border: 1px solid #c2c2c2;
+	cursor: default;
+	color: #353535;
+	outline: none;
+}
+.content_tablero .casilla-pista{
+	background: #dedede;
+}
+.content_tablero .casilla:hover{
+	background: #f5f5f5;
+}
+.content_tablero .

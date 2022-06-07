@@ -160,4 +160,8 @@ class Sudoku{
 		};
 	}
 
+	posicion(fila,columna){
+		return (fila*this.tam_tablero+(columna+1));
+	}
+
 }

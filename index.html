@@ -3,14 +3,26 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
 	<script type="text/javascript" src="js/Diccionario.js"></script>
 	<script type="text/javascript" src="js/Util.js"></script>
 	<script type="text/javascript" src="js/Sudoku.js"></script>
 	<script type="text/javascript" src="js/Consola.js"></script>
-	<script type="text/javascript" src="js/App.js"></script>
-	<title></title>
+	<title>Sudoku</title>
 </head>
 <body>
+
+	<h1>SUDOKU</h1>
+
+	<template id="template-tablero">
+		<div class="subtablero" id="subtablero"></div>
+		<div class="fila" id="fila"></div>
+		<div class="columna" id="columna"></div>
+		<input type="text" class="casilla" id="casilla">
+	</template>
+	<center class="content_tablero" id="content_tablero"></center>
+
+	<script type="text/javascript" src="js/App.js"></script>
 
 </body>
 </html>
