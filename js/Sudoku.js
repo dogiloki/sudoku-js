@@ -73,11 +73,11 @@ class Sudoku{
 		}
 	}
 
-	mostrar(){
+	mostrar(resuelto=false){
 		let tabla="";
 		for(let a=0; a<this.tam_tablero; a++){
 			for(let b=0; b<this.tam_tablero; b++){
-				tabla+=" "+this.tablero[a][b].texto+" ";
+				tabla+=" "+(resuelto?this.resultado[a][b]:this.tablero[a][b]).texto+" ";
 				if((b+1)%this.tam_subtablero==0){
 					tabla+=" | ";
 				}
