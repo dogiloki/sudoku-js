@@ -6,6 +6,6 @@ class Diccionario{
 		pistas:17
 	}
 
-	static casilla_vacia="";
+	static casilla_vacia="0"; // Solo un caracter por lo menos, para verse bien en consola
 
 }

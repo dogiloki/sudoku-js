@@ -5,10 +5,9 @@ class Sudoku{
 		this.resultado;
 		this.tam_subtablero;
 		this.tam_tablero;
+		this.numeros=0;
 		this.dimencionar();
 	}
-
-	static numeros=0;
 
 	dimencionar(){
 		this.tam_subtablero=Diccionario.num.sub_tablero;
@@ -69,7 +68,7 @@ class Sudoku{
 				texto: this.resultado[coords.fila][coords.columna].texto,
 				pista: true
 			}
-			Sudoku.numeros++;
+			this.numeros++;
 		}
 	}
 
@@ -95,7 +94,7 @@ class Sudoku{
 
 	ponerNumero(fila,columna,numero=""){
 		if(numero=="" && !this.tablero[fila][columna].pista){
-			Sudoku.numeros-=(Sudoku.numeros==0 || this.tablero[fila][columna].texto==Diccionario.casilla_vacia)?0:1;
+			this.numeros-=(this.numeros==0 || this.tablero[fila][columna].texto==Diccionario.casilla_vacia)?0:1;
 			this.tablero[fila][columna].texto=Diccionario.casilla_vacia;
 			return true;
 		}
@@ -112,7 +111,7 @@ class Sudoku{
 			return false;
 		}
 		this.tablero[fila][columna].texto=numero;
-		Sudoku.numeros++;
+		this.numeros++;
 		return true;
 	}
 

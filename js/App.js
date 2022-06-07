@@ -32,7 +32,7 @@ async function pintar(){
 			if((a+1)%sudoku.tam_subtablero==0){
 				content_columna.setAttribute("style","box-shadow: 0px 3px #c2c2c2;");
 			}
-			content_casilla.value=texto;
+			content_casilla.value=texto==0?"":texto;
 			if(pista){
 				content_casilla.classList.add("casilla-pista");
 				content_casilla.setAttribute("readonly","");
