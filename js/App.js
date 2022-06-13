@@ -74,3 +74,7 @@ function cambio(name){
 		caja.value="";
 	}
 }
+
+function cambiarDimenciones(){
+	
+}

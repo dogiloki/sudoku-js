@@ -10,11 +10,9 @@ class Consola{
 		let mensaje="/salir -> Para salir del modo consola\nTamaño del tablero: "+Diccionario.num.tablero;
 		mensaje+="\n"+this.sudoku.mostrar();
 		mensaje+="Ingrese una posición la fila, columna, número. Separados por comas\n/salir -> Para salir del modo consola";
-		let posicion=Util.entradaDato(mensaje,0);
-		if(posicion=="/salir"){
+		let posicion=Util.entradaDato(mensaje,0).replaceAll(" ","").split(",");
+		if(posicion[0]=="/salir"){
 			return;
-		}else{
-			posicion.replaceAll(" ","").split(",");
 		}
 		let fila=(posicion[0]??0)-1;
 		let columna=(posicion[1]??0)-1;

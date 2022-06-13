@@ -13,6 +13,10 @@
 <body>
 
 	<h1>SUDOKU</h1>
+	<select onclick="cambiarDimenciones(this)">
+		<option>2 X 2</option>
+		<option>3 X 3</option>
+	</select>
 	<button onclick="new Consola().pedirNumero();">Modo consola</button>
 
 	<template id="template-tablero">
